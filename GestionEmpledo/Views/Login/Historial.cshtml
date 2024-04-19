@@ -1,0 +1,60 @@
+@{
+    Layout = "~/Views/Shared/_LayoutNoSidebar.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="container mt-5" style="" id="tablas">
+    <div class="row mt-2">
+        <div class="card">
+            <div class="card-body">
+                
+                                <h2>Historial</h2>
+                                <form id="searchForm">
+                                    <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+                                    <input type="submit" value="Buscar">
+                                </form>
+                                <div id="EmpleadoList">
+
+                                </div> 
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                             <th scope="col">Id</th>
+                            <th scope="col">Empleado</th>
+                            <th scope="col">Entrada</th>
+                            <th scope="col">Salida</th>
+                            
+                        </tr>
+                    </thead>
+
+                      @foreach (var registro in Model)
+{
+    <tr>
+        <th scope="row">@registro.Id</th>
+        <td>@registro.Empleado.Nombre</td>
+        <td>@registro.FechaEntrada</td>
+        <td>@registro.FechaSalida</td>
+    </tr>
+}
+
+                </table>
+            </div>
+        </div>
+    </div>
+   </div>
+@section Scripts {
+    <script>
+        var searchUrl = '@Url.Action("Search", "Jobs")'; 
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/search.js"></script>
+}
+</body>
+</html>

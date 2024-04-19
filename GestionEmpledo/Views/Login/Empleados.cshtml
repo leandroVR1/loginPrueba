@@ -1,0 +1,66 @@
+@{
+    Layout = "~/Views/Shared/_LayoutNoSidebar.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div class="container mt-5" style="" id="tablas">
+    <div class="row mt-2">
+        <div class="card">
+            <div class="card-body">
+                 <a asp-controller="Login" asp-action="Create" class="btn btn-primary mb-3">Agregar Empleado</a>
+                                <h2>Empleados</h2>
+                                <form id="searchForm">
+                                    <input type="text" id="searchInput" placeholder="Buscar por nombre...">
+                                    <input type="submit" value="Buscar">
+                                </form>
+                                <div id="EmpleadoList">
+
+                                </div> 
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                             <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Contraseña</th>
+
+                            
+                        </tr>
+                    </thead>
+
+                      @foreach (var empleado in Model)
+{
+    <tr>
+        <th scope="row">@empleado.Id</th>
+        <td>@empleado.Nombre</td>
+        <td>@empleado.Apellido</td>
+        <td>@empleado.Telefono</td>
+        <td>@empleado.Correo</td>
+        <td>@empleado.Contraseña</td>
+
+    </tr>
+}
+
+                </table>
+            </div>
+        </div>
+    </div>
+   </div>
+@section Scripts {
+    <script>
+        var searchUrl = '@Url.Action("Search", "Jobs")'; 
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/search.js"></script>
+}
+</body>
+</html>
