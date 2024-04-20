@@ -9,67 +9,67 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GestionEmpledo
 build_property.RootNamespace = GestionEmpledo
-build_property.ProjectDir = /home/riwip4-048/Documents/leo/Login/GestionEmpledo/
+build_property.ProjectDir = /home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/riwip4-048/Documents/leo/Login/GestionEmpledo
+build_property.MSBuildProjectDirectory = /home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Admin/Index.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Home/Index.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Home/Privacy.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Login/Create.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Login/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Login/Empleados.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Login/Empleados.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vRW1wbGVhZG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Login/EntradaSalida.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Login/EntradaSalida.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vRW50cmFkYVNhbGlkYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Login/Historial.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Login/Historial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSGlzdG9yaWFsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Login/Index.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Shared/Error.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Shared/_LayoutNoSidebar.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Shared/_LayoutNoSidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXROb1NpZGViYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/_ViewImports.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/_ViewStart.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/riwip4-048/Documents/leo/Login/GestionEmpledo/Views/Shared/_Layout.cshtml]
+[/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ndzio2pt9z

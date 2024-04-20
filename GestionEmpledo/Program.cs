@@ -1,12 +1,9 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using GestionEmpledo.Data;
-using GestionEmpledo.Models;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,14 +12,19 @@ var connectionString = builder.Configuration.GetConnectionString("MySqlConnectio
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-   .AddCookie(options =>
+    .AddCookie(options =>
     {
         options.LoginPath = "/Login/Index";
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.AccessDeniedPath = "/Home/Index";
     });
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), mysqlOptions =>
+        mysqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5, // Número máximo de intentos de reintento
+            maxRetryDelay: TimeSpan.FromSeconds(10), // Máximo tiempo de espera entre intentos
+            errorNumbersToAdd: null) // SQL Server error numbers to consider for retry
+    ));
 
 // Add session service
 builder.Services.AddSession();
@@ -31,10 +33,10 @@ builder.Services.AddSession();
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminPolicy", policy =>
-        policy.RequireRole(Rol.Administrador.ToString()));
+        policy.RequireRole("Administrador"));
 
     options.AddPolicy("EmpleadoPolicy", policy =>
-        policy.RequireRole(Rol.Empleado.ToString()));
+        policy.RequireRole("Empleado"));
 });
 
 var app = builder.Build();

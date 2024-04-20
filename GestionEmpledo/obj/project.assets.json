@@ -1764,19 +1764,19 @@
     ]
   },
   "packageFolders": {
-    "/home/riwip4-048/.nuget/packages/": {}
+    "/home/riwip5-023/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/riwip4-048/Documents/leo/Login/GestionEmpledo/GestionEmpledo.csproj",
+      "projectUniqueName": "/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/GestionEmpledo.csproj",
       "projectName": "GestionEmpledo",
-      "projectPath": "/home/riwip4-048/Documents/leo/Login/GestionEmpledo/GestionEmpledo.csproj",
-      "packagesPath": "/home/riwip4-048/.nuget/packages/",
-      "outputPath": "/home/riwip4-048/Documents/leo/Login/GestionEmpledo/obj/",
+      "projectPath": "/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/GestionEmpledo.csproj",
+      "packagesPath": "/home/riwip5-023/.nuget/packages/",
+      "outputPath": "/home/riwip5-023/Documents/leo/loginPrueba/GestionEmpledo/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/riwip4-048/.nuget/NuGet/NuGet.Config"
+        "/home/riwip5-023/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -1837,7 +1837,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/home/riwip4-048/.dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/riwip5-023/dotnet/sdk/8.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

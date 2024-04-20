@@ -11,6 +11,9 @@ using GestionEmpledo.Data; // Agrega este using para acceder a HttpContext.Sessi
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
+using GestionEmpledo.ViewModels; // Para EmpleadoCreateViewModel
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 
 
@@ -38,60 +41,68 @@ namespace GestionEmpledo.Controllers
         }
 
         // POST: /Login
-         [HttpPost]
-         [AllowAnonymous]
+        
+        [HttpPost]
+        [AllowAnonymous]
+
 
 public async Task<IActionResult> Login(string correo, string contraseña)
 {
     if (string.IsNullOrEmpty(correo) || string.IsNullOrEmpty(contraseña))
     {
-        ModelState.AddModelError("", "Por favor, ingrese el correo y la contraseña.");
+        TempData["Error"] = "Por favor, ingrese el correo y la contraseña.";
         return View("Index");
     }
 
-    var empleado = _context.Empleados.FirstOrDefault(u => u.Correo == correo && u.Contraseña == contraseña);
+    var empleado = await _context.Empleados.FirstOrDefaultAsync(u => u.Correo == correo && u.Contraseña == contraseña);
 
     if (empleado != null)
     {
-        // Autenticación exitosa
+        HttpContext.Session.SetInt32("EmpleadoId", empleado.Id);
+
         var claims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, empleado.Id.ToString()),
             new Claim(ClaimTypes.Name, empleado.Nombre)
         };
 
-        // Agregar el rol como claim si existe
-        if (empleado.Rol != null)
+        if (empleado.IdRol == 1)
         {
-            claims.Add(new Claim(ClaimTypes.Role, empleado.Rol.ToString()));
+            claims.Add(new Claim(ClaimTypes.Role, "Administrador"));
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(claimsIdentity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
+            return RedirectToAction("Historial");
         }
-
-        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-        var principal = new ClaimsPrincipal(claimsIdentity);
-
-        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-
-        // Redirige al usuario según su rol
-        if (empleado.Rol == Rol.Administrador)
+        else if (empleado.IdRol == 2)
         {
-            return RedirectToAction("Index", "Home"); // Por ejemplo, redirige al Home para el admin
-        }
-        else if (empleado.Rol == Rol.Empleado)
-        {
+            claims.Add(new Claim(ClaimTypes.Role, "Empleado"));
+
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(claimsIdentity);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
             return RedirectToAction("EntradaSalida");
         }
     }
 
-    // Credenciales inválidas
-    ModelState.AddModelError("", "Correo o contraseña incorrectos");
+    TempData["Error"] = "Correo o contraseña incorrectos";
     return View("Index");
 }
 
-        // GET: /Login/EntradaSalida
-       // Ejemplo de aplicación de política de autorización para la acción EntradaSalida
 [Authorize(Roles = "Empleado")]
 public IActionResult EntradaSalida()
 {
+    // Verificar si el usuario tiene el rol adecuado antes de permitir el acceso
+    if (!User.IsInRole("Empleado"))
+    {
+        return RedirectToAction("AccessDenied", "Error");
+    }
+
     var model = new RegistrosEntrada_Salida();
     return View(model);
 }
@@ -124,6 +135,7 @@ public IActionResult EntradaSalida()
         }
 
         // GET: /Login/Historial
+           [Authorize(Roles = "Administrador")]
              public IActionResult Historial()
         {
             // Obtener todos los registros de entrada y salida de la base de datos
@@ -135,6 +147,7 @@ public IActionResult EntradaSalida()
         }
 
         // GET: /Login/Empleados
+           [Authorize(Roles = "Administrador")]
         public IActionResult Empleados()
         {
             // Obtener todos los empleados de la base de datos
@@ -144,23 +157,51 @@ public IActionResult EntradaSalida()
         }
 
         // POST: /Login/Create
-        public IActionResult Create()
+       
+[Authorize(Roles = "Administrador")]
+public IActionResult Create()
+{
+    var viewModel = new EmpleadoCreateViewModel
+    {
+        Roles = _context.Roles.Select(r => new SelectListItem
         {
-            return View();
-        }
+            Value = r.IdRol.ToString(),
+            Text = r.Descripcion
+        }).ToList()
+    };
+    return View(viewModel);
+}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Empleado empleado)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Empleados.Add(empleado);
-                _context.SaveChanges();
-                return RedirectToAction("Empleados");
-            }
-            return View(empleado);
-        }
+[HttpPost]
+[ValidateAntiForgeryToken]
+[Authorize(Roles = "Administrador")]
+public async Task<IActionResult> Create(EmpleadoCreateViewModel viewModel)
+{
+   
+    
+        
+            _context.Empleados.Add(viewModel.Empleado);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Empleados");
+        
+            ModelState.AddModelError("", "Error.");
+        
+
+  
+    viewModel.Roles = _context.Roles.Select(r => new SelectListItem
+    {
+        Value = r.IdRol.ToString(),
+        Text = r.Descripcion
+    }).ToList();
+
+    return View(viewModel);
+}
+
+
+
+
+
+
 
         // POST: /Login/CerrarSesion
         [HttpPost]
